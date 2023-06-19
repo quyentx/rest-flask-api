@@ -31,8 +31,9 @@ pipeline {
                         configName: "rest-api",
                         verbose: true,
                         transfers: [
-                          sshTransfer(execCommand: "pwd"),
-                          sshTransfer(execCommand: "git pull")
+                          sshTransfer(execCommand: "flask-restful-apis"),
+                          sshTransfer(execCommand: "git pull"),
+                          sshTransfer(execCommand: "pipenv run sh ./bootstrap.sh &")
                         ]
                     )
                 ]
