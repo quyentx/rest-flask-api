@@ -32,8 +32,8 @@ pipeline {
                         configName: "rest-api",
                         verbose: true,
                         transfers: [
-                          // sshTransfer(execCommand: "sudo kill -9 `sudo lsof -t -i:5000`"),
-                          sshTransfer(execCommand: "pushd rest-flask-api && git pull && pipenv install && popd")
+                          sshTransfer(execCommand: "sudo kill -9 `sudo lsof -t -i:5000`"),
+                          sshTransfer(execCommand: "pushd rest-flask-api && git reset --hard && git clean -fd && git pull && pipenv install && popd")
                         ]
                     )
                 ]
