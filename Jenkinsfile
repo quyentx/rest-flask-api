@@ -19,13 +19,32 @@ pipeline {
         sh 'pipenv run pytest --alluredir=reports --base_url=http://localhost:5000'
       }
     }
-  
-    stage('Deploy')
-    {
-      steps {
-        echo "deploying the application "
-      }
+
+    stage('Deploy') {
+        steps([$class: 'BapSshPromotionPublisherPlugin']) {
+          echo "deploying application"
+            sshPublisher(
+                continueOnError: false, 
+                failOnError: true,
+                publishers: [
+                    sshPublisherDesc(
+                        configName: "rest-api",
+                        verbose: true,
+                        transfers: [
+                            sshTransfer(execCommand: "git pull")
+                        ]
+                    )
+                ]
+            )
+        }
     }
+    
+    // stage('Deploy')
+    // {
+    //   steps {
+    //     echo "deploying the application "
+    //   }
+    // }
   }
   
   post {
