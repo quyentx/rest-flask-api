@@ -32,10 +32,8 @@ pipeline {
                         verbose: true,
                         transfers: [
                           // sshTransfer(execCommand: "scp -r /rest-flask-api quyentx_ste@34.136.158.210:/rest-flask-api"),
+                          sshTransfer(execCommand: "rm -rf rest-flask-api"),
                           sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
-                          sshTransfer(execCommand: "pwd"),
-                          sshTransfer(execCommand: "ls -l"),
-                          // sshTransfer(execCommand: "git pull"),
                           sshTransfer(execCommand: "pipenv run sh ./rest-flask-api/bootstrap.sh &")
                         ]
                     )
