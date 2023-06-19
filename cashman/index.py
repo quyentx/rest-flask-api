@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-
+from gevent.pywsgi import WSGIServer
 from cashman.model.expense import Expense, ExpenseSchema
 from cashman.model.income import Income, IncomeSchema
 from cashman.model.transaction_type import TransactionType
@@ -47,4 +47,6 @@ def add_expense():
 
 
 if __name__ == "__main__":
-    app.run()
+    # app.run()
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()

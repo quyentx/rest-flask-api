@@ -12,6 +12,7 @@ marshmallow = "*"
 requests = "*"
 pytest = "*"
 allure-pytest = "*"
+gevent = "*"
 
 
 [dev-packages]
