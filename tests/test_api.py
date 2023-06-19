@@ -19,4 +19,4 @@ def test_get_incomes(base_url):
         response = request.send_request('GET', f"{base_url}/incomes", headers)
         assert response.status_code == 200
         response_body = response.json()
-        assert response_body[0]["description"] == 'Salary'
+        assert response_body[0]["description"] == 'loan payment'
