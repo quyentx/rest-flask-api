@@ -35,8 +35,9 @@ pipeline {
                           sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
                           // sshTransfer(execCommand: "cd rest-flask-api"),
                           sshTransfer(execCommand: "pwd"),
+                          sshTransfer(execCommand: "ls -l"),
                           // sshTransfer(execCommand: "pipenv install"),
-                          sshTransfer(execCommand: "/rest-flask-api/Pipfile pipenv run sh ./bootstrap.sh &")
+                          sshTransfer(execCommand: "rest-flask-api/Pipfile pipenv run sh ./bootstrap.sh &")
                         ]
                     )
                 ]
