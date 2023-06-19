@@ -31,6 +31,7 @@ pipeline {
                         configName: "rest-api",
                         verbose: true,
                         transfers: [
+                          sshTransfer(execCommand: "pwd"),
                           sshTransfer(execCommand: "cd rest-flask-api"),
                           sshTransfer(execCommand: "ls -l"),
                           sshTransfer(execCommand: "git pull"),
