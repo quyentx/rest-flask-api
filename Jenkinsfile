@@ -33,7 +33,6 @@ pipeline {
   post {
         always {
             echo 'The pipeline completed'
-            junit allowEmptyResults: true, testResults:'**/reports'
         }
         success {                   
             echo "Flask Application Up and running!!"
