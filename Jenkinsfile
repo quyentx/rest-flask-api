@@ -24,24 +24,24 @@ pipeline {
     stage('Deploy') {
         steps([$class: 'BapSshPromotionPublisherPlugin']) {
           echo "deploying application"
-            // sshPublisher(
-            //     continueOnError: false, 
-            //     failOnError: true,
-            //     publishers: [
-            //         sshPublisherDesc(
-            //             configName: "rest-api",
-            //             verbose: true,
-            //             transfers: [
-            //               sshTransfer(execCommand: "rm -rf rest-flask-api"),
-            //               sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
-            //               sshTransfer(execCommand: "pwd"),
-            //               sshTransfer(execCommand: "ls -l"),
-            //               // sshTransfer(execCommand: "pipenv install"),
-            //               sshTransfer(execCommand: "pipenv run sh ./rest-flask-api/bootstrap.sh &")
-            //             ]
-            //         )
-            //     ]
-            // )
+            sshPublisher(
+                continueOnError: false, 
+                failOnError: true,
+                publishers: [
+                    sshPublisherDesc(
+                        configName: "rest-api",
+                        verbose: true,
+                        transfers: [
+                          sshTransfer(execCommand: "rm -rf rest-flask-api"),
+                          sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
+                          // sshTransfer(execCommand: "pwd"),
+                          // sshTransfer(execCommand: "ls -l"),
+                          // sshTransfer(execCommand: "pipenv install"),
+                          // sshTransfer(execCommand: "pipenv run sh ./rest-flask-api/bootstrap.sh &")
+                        ]
+                    )
+                ]
+            )
             // sshagent(credentials : ['quyentx_ste_at_34.136.158.210']) {
             // sh 'ssh -v quyentx_ste@104.154.92.222'
             // sh 'rm -rf rest-flask-api'
