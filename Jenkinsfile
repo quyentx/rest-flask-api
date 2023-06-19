@@ -31,9 +31,9 @@ pipeline {
                         configName: "rest-api",
                         verbose: true,
                         transfers: [
-                          // sshTransfer(execCommand: "scp -r /rest-flask-api quyentx_ste@34.136.158.210:/rest-flask-api"),
                           sshTransfer(execCommand: "rm -rf rest-flask-api"),
                           sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
+                          sshTransfer(execCommand: "cd rest-flask-api"),
                           sshTransfer(execCommand: "pipenv run sh ./rest-flask-api/bootstrap.sh &")
                         ]
                     )
