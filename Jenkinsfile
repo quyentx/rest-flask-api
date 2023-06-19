@@ -31,7 +31,7 @@ pipeline {
                         configName: "rest-api",
                         verbose: true,
                         transfers: [
-                          sshTransfer(execCommand: "pwd")
+                          sshTransfer(execCommand: "pwd"),
                           sshTransfer(execCommand: "git pull")
                         ]
                     )
