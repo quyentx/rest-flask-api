@@ -17,7 +17,6 @@ pipeline {
       steps {
         sh 'cd tests'
         sh 'pipenv run pytest --alluredir=reports --base_url=http://localhost:5000'
-        // input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
       }
     }
   
