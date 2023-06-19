@@ -32,6 +32,7 @@ pipeline {
                         verbose: true,
                         transfers: [
                           sshTransfer(execCommand: "cd flask-restful-apis"),
+                          sshTransfer(execCommand: "ls -l"),
                           sshTransfer(execCommand: "git pull"),
                           sshTransfer(execCommand: "pipenv run sh ./bootstrap.sh &")
                         ]
