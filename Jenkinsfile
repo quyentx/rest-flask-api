@@ -21,13 +21,12 @@ pipeline {
       }
     }
   
-    // stage('Deploy')
-    // {
-    //   steps {
-    //     echo "deploying the application"
-    //     sh "sudo nohup python3 app.py > log.txt 2>&1 &"
-    //   }
-    // }
+    stage('Deploy')
+    {
+      steps {
+        echo "deploying the application"
+      }
+    }
   }
   
   post {
