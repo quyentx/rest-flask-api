@@ -31,12 +31,12 @@ pipeline {
                         configName: "rest-api",
                         verbose: true,
                         transfers: [
-                          sshTransfer(execCommand: "scp -r /rest-flask-api quyentx_ste@34.136.158.210:/rest-flask-api"),
+                          // sshTransfer(execCommand: "scp -r /rest-flask-api quyentx_ste@34.136.158.210:/rest-flask-api"),
                           // sshTransfer(execCommand: "cd ~/rest-flask-api"),
-                          // sshTransfer(execCommand: "pwd"),
-                          // sshTransfer(execCommand: "ls -l"),
-                          // sshTransfer(execCommand: "git pull"),
-                          // sshTransfer(execCommand: "pipenv run sh ./bootstrap.sh &")
+                          sshTransfer(execCommand: "pwd"),
+                          sshTransfer(execCommand: "ls -l"),
+                          sshTransfer(execCommand: "git pull"),
+                          sshTransfer(execCommand: "pipenv run sh ./bootstrap.sh &")
                         ]
                     )
                 ]
