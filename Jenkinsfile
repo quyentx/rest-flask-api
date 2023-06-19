@@ -32,13 +32,8 @@ pipeline {
                         configName: "rest-api",
                         verbose: true,
                         transfers: [
-                          // sshTransfer(execCommand: "rm -rf rest-flask-api"),
-                          // sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
-                          // sshTransfer(execCommand: "pwd"),
-                          // sshTransfer(execCommand: "sudo pkill -9 -f python"),
-                          sshTransfer(execCommand: "sudo kill -9 `sudo lsof -t -i:5000`"),
-                          sshTransfer(execCommand: "pushd rest-flask-api && git pull && pipenv install && nohup pipenv run sh ./bootstrap.sh && popd")
-                          // sshTransfer(execCommand: "pipenv run sh ./rest-flask-api/bootstrap.sh &")
+                          // sshTransfer(execCommand: "sudo kill -9 `sudo lsof -t -i:5000`"),
+                          sshTransfer(execCommand: "pushd rest-flask-api && git pull && pipenv install && popd")
                         ]
                     )
                 ]
