@@ -42,14 +42,14 @@ pipeline {
             //         )
             //     ]
             // )
-            sshagent(credentials : ['quyentx_ste_at_34.136.158.210']) {
-            sh 'ssh -v quyentx_ste@104.154.92.222'
-            sh 'rm -rf rest-flask-api'
-            sh 'git clone git@github.com:quyentx/rest-flask-api.git'
-            sh 'cd rest-flask-api'
-            sh 'pipenv install'
-            sh 'pipenv run sh ./bootstrap.sh &'
-            }
+            // sshagent(credentials : ['quyentx_ste_at_34.136.158.210']) {
+            // sh 'ssh -v quyentx_ste@104.154.92.222'
+            // sh 'rm -rf rest-flask-api'
+            // sh 'git clone git@github.com:quyentx/rest-flask-api.git'
+            // sh 'cd rest-flask-api'
+            // sh 'pipenv install'
+            // sh 'pipenv run sh ./bootstrap.sh &'
+            // }
         }
     }
     
