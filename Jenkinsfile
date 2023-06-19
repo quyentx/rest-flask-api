@@ -41,15 +41,24 @@ pipeline {
             //         )
             //     ]
             // )
-            sshagent(credentials : ['quyentx_ste_at_34.136.158.210']) {
-            sh 'ssh -o StrictHostKeyChecking=no quyentx_ste@34.136.158.210 uptime'
-            sh 'ssh -v quyentx_ste@34.136.158.210'
-            sh 'rm -rf rest-flask-api'
-            sh 'git clone git@github.com:quyentx/rest-flask-api.git'
-            sh 'cd rest-flask-api'
-            sh 'pipenv install'
-            sh 'pipenv run sh ./bootstrap.sh &'
-        }
+            // sshagent(credentials : ['quyentx_ste_at_34.136.158.210']) {
+            // sh 'ssh -o StrictHostKeyChecking=no quyentx_ste@34.136.158.210 uptime'
+            // sh 'ssh -v quyentx_ste@34.136.158.210'
+            // sh 'rm -rf rest-flask-api'
+            // sh 'git clone git@github.com:quyentx/rest-flask-api.git'
+            // sh 'cd rest-flask-api'
+            // sh 'pipenv install'
+            // sh 'pipenv run sh ./bootstrap.sh &'
+            // }
+            def remote = [:]
+            remote.name = 'test'
+            remote.host = '34.136.158.210'
+            remote.user = 'quyentx_ste'
+            remote.password = ''
+            remote.allowAnyHosts = true
+            stage('Remote SSH') {
+              sshScript remote: remote, script: "cd rest-flask-api && git pull && pipenv run sh ./bootstrap.sh &"
+            }
         }
     }
     
