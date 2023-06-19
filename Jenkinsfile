@@ -32,7 +32,8 @@ pipeline {
                         verbose: true,
                         transfers: [
                           sshTransfer(execCommand: "pwd"),
-                          // sshTransfer(execCommand: "cd rest-flask-api"),
+                          sshTransfer(execCommand: "cd ~/rest-flask-api"),
+                          sshTransfer(execCommand: "pwd"),
                           sshTransfer(execCommand: "ls -l"),
                           sshTransfer(execCommand: "git pull"),
                           sshTransfer(execCommand: "pipenv run sh ./bootstrap.sh &")
