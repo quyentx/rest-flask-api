@@ -36,7 +36,7 @@ pipeline {
                           // sshTransfer(execCommand: "cd rest-flask-api"),
                           // sshTransfer(execCommand: "pwd"),
                           // sshTransfer(execCommand: "pipenv install"),
-                          // sshTransfer(execCommand: "pipenv run sh ./rest-flask-api/bootstrap.sh &")
+                          sshTransfer(execCommand: "/rest-flask-api/Pipfile pipenv run sh ./bootstrap.sh &")
                         ]
                     )
                 ]
