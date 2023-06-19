@@ -23,25 +23,24 @@ pipeline {
     stage('Deploy') {
         steps([$class: 'BapSshPromotionPublisherPlugin']) {
           echo "deploying application"
-            sshPublisher(
-                continueOnError: false, 
-                failOnError: true,
-                publishers: [
-                    sshPublisherDesc(
-                        configName: "rest-api",
-                        verbose: true,
-                        transfers: [
-                          sshTransfer(execCommand: "rm -rf rest-flask-api"),
-                          sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
-                          // sshTransfer(execCommand: "cd rest-flask-api"),
-                          sshTransfer(execCommand: "pwd"),
-                          sshTransfer(execCommand: "ls -l"),
-                          // sshTransfer(execCommand: "pipenv install"),
-                          sshTransfer(execCommand: "rest-flask-api/Pipfile sudo pipenv run sh ./bootstrap.sh &")
-                        ]
-                    )
-                ]
-            )
+            // sshPublisher(
+            //     continueOnError: false, 
+            //     failOnError: true,
+            //     publishers: [
+            //         sshPublisherDesc(
+            //             configName: "rest-api",
+            //             verbose: true,
+            //             transfers: [
+            //               sshTransfer(execCommand: "rm -rf rest-flask-api"),
+            //               sshTransfer(execCommand: "git clone git@github.com:quyentx/rest-flask-api.git"),
+            //               sshTransfer(execCommand: "pwd"),
+            //               sshTransfer(execCommand: "ls -l"),
+            //               // sshTransfer(execCommand: "pipenv install"),
+            //               sshTransfer(execCommand: "pipenv run sh ./rest-flask-api/bootstrap.sh &")
+            //             ]
+            //         )
+            //     ]
+            // )
             // sshagent(credentials : ['quyentx_ste_at_34.136.158.210']) {
             // sh 'ssh -o StrictHostKeyChecking=no quyentx_ste@34.136.158.210 uptime'
             // sh 'ssh -v quyentx_ste@34.136.158.210'
@@ -51,6 +50,23 @@ pipeline {
             // sh 'pipenv install'
             // sh 'pipenv run sh ./bootstrap.sh &'
             // }
+            def remote = [:]
+            remote.name = "node-1"
+            remote.host = "104.154.92.222"
+            remote.allowAnyHosts = true
+
+            node {
+                withCredentials([sshUserPrivateKey(credentialsId: 'quyentx_ste_at_34.136.158.210', passphraseVariable: '', usernameVariable: 'quyentx_ste')]) {
+                    remote.user = userName
+                    stage("SSH Steps Rocks!") {
+                        sshCommand remote: remote, command: 'rm -rf rest-flask-api'
+                        sshCommand remote: remote, command: 'git clone git@github.com:quyentx/rest-flask-api.git'
+                        sshCommand remote: remote, command: 'cd rest-flask-api'
+                        sshCommand remote: remote, command: 'pipenv install'
+                        sshCommand remote: remote, command: 'pipenv run sh ./rest-flask-api/bootstrap.sh &'
+                    }
+                }
+            }
         }
     }
     
