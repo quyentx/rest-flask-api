@@ -19,13 +19,7 @@ pipeline {
                 ]
             )
         }
-          // steps {
-          //   sh 'echo "building the repo"'
-          //   sh 'pipenv install'
-          //   sh 'pipenv run sh ./bootstrap.sh &'
-          // }
-        }
-    }
+      }
   
     stage('Test') {
       steps {
