@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
 from gevent.pywsgi import WSGIServer
-from cashman.model.expense import Expense, ExpenseSchema
-from cashman.model.income import Income, IncomeSchema
-from cashman.model.transaction_type import TransactionType
+from app.model.expense import Expense, ExpenseSchema
+from app.model.income import Income, IncomeSchema
+from app.model.transaction_type import TransactionType
 
 app = Flask(__name__)
 
