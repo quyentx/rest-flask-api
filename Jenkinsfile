@@ -2,8 +2,6 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      parallel {
-        stage('Build') {
           steps([$class: 'BapSshPromotionPublisherPlugin']) {
           echo "deploying application to test environment"
             sshPublisher(
@@ -27,7 +25,6 @@ pipeline {
           //   sh 'pipenv run sh ./bootstrap.sh &'
           // }
         }
-      }
     }
   
     stage('Test') {
