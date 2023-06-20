@@ -1,10 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Test Deploy') {
           steps([$class: 'BapSshPromotionPublisherPlugin']) {
           echo "deploying application to test environment"
-            sshPublisher(
+          sshPublisher(
                 continueOnError: false, 
                 failOnError: true,
                 publishers: [
@@ -21,7 +21,7 @@ pipeline {
         }
       }
   
-    stage('Test') {
+    stage('Test Execution') {
       steps {
         sh 'cd tests'
         sh 'pipenv run pytest --alluredir=reports --base_url=http://34.135.218.254:5000'
@@ -37,7 +37,7 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Prod Deploy') {
         steps([$class: 'BapSshPromotionPublisherPlugin']) {
           echo "deploying application"
             sshPublisher(
