@@ -1,5 +1,6 @@
 pipeline {
-  agent any
+  // agent any
+  agent { label 'ubuntu' }
   stages {
     stage('Test Deploy') {
       steps([$class: 'BapSshPromotionPublisherPlugin']) {
