@@ -1,6 +1,6 @@
 pipeline {
-  agent any
-  // agent { label 'ubuntu' } 
+  // agent any
+  agent { label 'ubuntu' } 
   stages {
     stage('Test Deploy') {
       steps([$class: 'BapSshPromotionPublisherPlugin']) {
@@ -27,18 +27,18 @@ pipeline {
         sh 'cd tests'
         sh 'pipenv run pytest --alluredir=reports --base_url=http://34.135.218.254:5000'
       }
-      post {
-        always {
-          allure([
-            includeProperties: false,
-            properties: [],
-            reportBuildPolicy: 'ALWAYS',
-            results: [
-              [path: 'reports']
-            ]
-          ])
-        }
-      }
+      // post {
+      //   always {
+      //     allure([
+      //       includeProperties: false,
+      //       properties: [],
+      //       reportBuildPolicy: 'ALWAYS',
+      //       results: [
+      //         [path: 'reports']
+      //       ]
+      //     ])
+      //   }
+      // }
     }
 
     stage('Prod Deploy') {
