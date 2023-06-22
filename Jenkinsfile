@@ -63,7 +63,7 @@ pipeline {
 
   post {
     always {
-      echo 'The pipeline completed'
+      echo 'The pipeline completed!'
     }
     success {
       echo "Flask Application Up and running!!"
