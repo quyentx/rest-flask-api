@@ -1,12 +1,7 @@
 pipeline {
   // agent any
-  options {
-         timeout(time: 15, unit: 'MINUTES')
-    }
+  agent { label 'ubuntu' } 
   stages {
-    stage('Test Deploy') {
-      agent { label 'ubuntu' } 
-    }
     stage('Test Deploy') {
       steps([$class: 'BapSshPromotionPublisherPlugin']) {
         echo "deploying application to test environment"
