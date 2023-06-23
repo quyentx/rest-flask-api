@@ -25,6 +25,7 @@ pipeline {
     stage('Test Execution') {
       steps {
         sh 'cd tests'
+        sh 'pipenv install'
         sh 'pipenv run pytest --alluredir=reports --base_url=http://34.135.218.254:5000'
       }
       post {
