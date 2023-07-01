@@ -7,12 +7,12 @@ name = "pypi"
 
 [packages]
 
-flask = "*"
-marshmallow = "*"
-requests = "*"
-pytest = "*"
-allure-pytest = "*"
-gevent = "*"
+flask = "2.3.2"
+marshmallow = "3.19.0"
+requests = "2.31.0"
+pytest = "7.3.2"
+allure-pytest = "2.13.2"
+gevent = "22.10.2"
 
 
 [dev-packages]
